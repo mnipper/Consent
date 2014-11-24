@@ -28,7 +28,7 @@ describe "ConsentForm API" do
   end
 
   it 'returns an unsuccessful response if consent form has a blank name' do
-    post "api/v1/consent_forms",
+    post @api_endpoint,
       consent_form:
         {
           'name' => '',
@@ -42,6 +42,6 @@ describe "ConsentForm API" do
   end
 
   it 'should not respond to a get request' do
-    lambda { get "/api/v1/consent_forms" }.should raise_error
+    lambda { get @api_endpoint }.should raise_error
   end
 end
