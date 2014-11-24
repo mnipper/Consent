@@ -5,6 +5,10 @@ class FieldDecrypter
   attr_accessor :field_delimiter, :private_key_filepath, :symmetric_algorithm
 
   def initialize(private_key_filepath, options = {})
+    unless File.exist?(private_key_filepath)
+      raise ArgumentError "The provided private key at '#{private_key_filepath}' does not exist."
+    end
+
     @private_key_filepath   = private_key_filepath
     @field_delimiter        = options[:field_delimiter] || '::'
     @symmetric_algorithm    = options[:symmetric_algorithm] || 'AES-256-CBC'
