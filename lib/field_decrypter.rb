@@ -1,7 +1,7 @@
 require 'openssl'
 require 'base64'
 
-Module FieldDecrypter
+module FieldDecrypter
   FieldDelimiter = '::'
   PrivateKeyFilepath = 'private.pem'
   SymmetricAlgorithm = 'AES-256-CBC'
