@@ -7,6 +7,7 @@ module FieldDecrypter
   SymmetricAlgorithm = 'AES-256-CBC'
 
   def self.decrypt(field)
+    return if field.blank?
     iv, encrypted_aes_key, encrypted_text = field.split(FieldDelimiter)
     private_key = OpenSSL::PKey::RSA.new(File.read(PrivateKeyFilepath))
     decrypted_aes_key = private_key.private_decrypt(Base64.decode64(encrypted_aes_key))
