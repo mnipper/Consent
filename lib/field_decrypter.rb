@@ -18,6 +18,14 @@ class FieldDecrypter
     decrypt_data(iv, decrypted_aes_key, encrypted_text)
   end
 
+  def field_delimiter=(delimiter)
+    if delimiter =~ /[A-Za-z0-9\/+]/
+      raise ArgumentError "This is not a valid delimiter!  Must not be a character in Base64."
+    end
+
+    @field_delimiter = delimiter
+  end
+
   private
     def decrypt_data(iv, key, encrypted_text)
       aes = OpenSSL::Cipher.new(symmetric_algorithm)
