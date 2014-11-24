@@ -14,7 +14,9 @@
 #
 
 class ConsentForm < ActiveRecord::Base
-  include EncryptedFields
-
+  extend EncryptedFields
+  
   encrypted_fields :name, :email
+
+  validates :name, presence: true
 end

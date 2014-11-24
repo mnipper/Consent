@@ -5,13 +5,18 @@ module Api
       respond_to :json
 
       def create
-        @consent_form = ConsentForm.new(params[:consent_form])
+        @consent_form = ConsentForm.new(consent_form_params)
         if @consent_form.save
           render nothing: true, status: :created
         else
           render nothing: true, status: :unprocessable_entity
         end
       end
+
+      private
+        def consent_form_params
+          params.require(:consent_form).permit(:name, :email, :date, :send_email_copy, :project_id, :device_label)
+        end
     end
   end
 end
