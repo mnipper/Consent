@@ -1,22 +1,26 @@
 require 'openssl'
 require 'base64'
 
-module FieldDecrypter
-  FieldDelimiter = '::'
-  PrivateKeyFilepath = 'private.pem'
-  SymmetricAlgorithm = 'AES-256-CBC'
+class FieldDecrypter
+  attr_accessor :field_delimiter, :private_key_filepath, :symmetric_algorithm
 
-  def self.decrypt(field)
+  def initialize(private_key_filepath, options = {})
+    @private_key_filepath   = private_key_filepath
+    @field_delimiter        = options[:field_delimiter] || '::'
+    @symmetric_algorithm    = options[:symmetric_algorithm] || 'AES-256-CBC'
+  end
+
+  def decrypt(field)
     return if field.blank?
-    iv, encrypted_aes_key, encrypted_text = field.split(FieldDelimiter)
-    private_key = OpenSSL::PKey::RSA.new(File.read(PrivateKeyFilepath))
+    iv, encrypted_aes_key, encrypted_text = field.split(field_delimiter)
+    private_key = OpenSSL::PKey::RSA.new(File.read(private_key_filepath))
     decrypted_aes_key = private_key.private_decrypt(Base64.decode64(encrypted_aes_key))
-    self.decrypt_data(iv, decrypted_aes_key, encrypted_text)
+    decrypt_data(iv, decrypted_aes_key, encrypted_text)
   end
 
   private
-    def self.decrypt_data(iv, key, encrypted_text)
-      aes = OpenSSL::Cipher.new(SymmetricAlgorithm)
+    def decrypt_data(iv, key, encrypted_text)
+      aes = OpenSSL::Cipher.new(symmetric_algorithm)
       aes.decrypt
       aes.key = key
       aes.iv = Base64.decode64(iv)
