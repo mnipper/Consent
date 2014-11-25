@@ -3,10 +3,11 @@ require 'spec_helper'
 describe FieldDecrypter do
   before :all do
     @encrypted_message = 'RC78JOorP4EKyuh3Bh9atg==::iiaRmPaoFbke5d81FkL5SgQYudtnV2rl370QVlJel0f2+IniSugQ359gvsTqT2YPg1JcZ+9eky9GLGoDdAX90jsqYBG3CnawS6FgHNfO2HxBxTcgTWgfRmZv1lLo4JJ423lVXMdQv2mxgBTTMMO1ZNJsHtDjOoKlTGPh1lL3DARRrkz67J8LKN/zGDMIQXr9kfag/qkCJgJB36Owsj+9qIKKrzxtznsp/t8/Q2JGaKJmvh0srKr35hXJ6+cucI/+2uhEE78oKadUTyxxzgKrrmhKkKW2TvO4BPRsA7kpU6/X44UYYxQ2eqiMrhvklbzZKgtOuk84LZg4gXi9zCc80g==::gPYO7iDShmrk+RzO5ydjMfSUizmVEA6dAdrpsLeZvqI=' 
+    @test_key_path = "#{Rails.root}/spec/resources/test_private_key.pem"
   end
 
   before :each do
-    @field_decrypter = FieldDecrypter.new("#{Rails.root}/spec/resources/test_private_key.pem")
+    @field_decrypter = FieldDecrypter.new(@test_key_path)
   end
 
   it "should correctly decrypt a message" do
@@ -32,7 +33,7 @@ describe FieldDecrypter do
 
   describe "json parsing" do
     before :each do
-      @field_decrypter_json = FieldDecrypter.new("#{Rails.root}/spec/resources/test_private_key.pem", format: :json)
+      @field_decrypter_json = FieldDecrypter.new(@test_key_path, format: :json)
       @message = {}
       @message['iv'] = 'RC78JOorP4EKyuh3Bh9atg=='
       @message['key'] = 'iiaRmPaoFbke5d81FkL5SgQYudtnV2rl370QVlJel0f2+IniSugQ359gvsTqT2YPg1JcZ+9eky9GLGoDdAX90jsqYBG3CnawS6FgHNfO2HxBxTcgTWgfRmZv1lLo4JJ423lVXMdQv2mxgBTTMMO1ZNJsHtDjOoKlTGPh1lL3DARRrkz67J8LKN/zGDMIQXr9kfag/qkCJgJB36Owsj+9qIKKrzxtznsp/t8/Q2JGaKJmvh0srKr35hXJ6+cucI/+2uhEE78oKadUTyxxzgKrrmhKkKW2TvO4BPRsA7kpU6/X44UYYxQ2eqiMrhvklbzZKgtOuk84LZg4gXi9zCc80g=='
@@ -47,7 +48,6 @@ describe FieldDecrypter do
     end
 
     it "should decrypt a json value" do
-      @field_decrypter_json = FieldDecrypter.new("#{Rails.root}/spec/resources/test_private_key.pem", format: :json)
       @field_decrypter_json.decrypt(@message.to_json).should == "Hello out there!"
     end
   end
