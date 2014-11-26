@@ -34,10 +34,11 @@ describe FieldDecrypter do
   describe "json parsing" do
     before :each do
       @field_decrypter_json = FieldDecrypter.new(@test_key_path, format: :json)
+      iv, key, message = @encrypted_message.split(@field_decrypter.field_delimiter)
       @message = {}
-      @message['iv'] = 'RC78JOorP4EKyuh3Bh9atg=='
-      @message['key'] = 'iiaRmPaoFbke5d81FkL5SgQYudtnV2rl370QVlJel0f2+IniSugQ359gvsTqT2YPg1JcZ+9eky9GLGoDdAX90jsqYBG3CnawS6FgHNfO2HxBxTcgTWgfRmZv1lLo4JJ423lVXMdQv2mxgBTTMMO1ZNJsHtDjOoKlTGPh1lL3DARRrkz67J8LKN/zGDMIQXr9kfag/qkCJgJB36Owsj+9qIKKrzxtznsp/t8/Q2JGaKJmvh0srKr35hXJ6+cucI/+2uhEE78oKadUTyxxzgKrrmhKkKW2TvO4BPRsA7kpU6/X44UYYxQ2eqiMrhvklbzZKgtOuk84LZg4gXi9zCc80g=='
-      @message['message'] = 'gPYO7iDShmrk+RzO5ydjMfSUizmVEA6dAdrpsLeZvqI=' 
+      @message['iv'] = iv
+      @message['key'] = key 
+      @message['message'] = message 
     end
 
     it "should parse a json field" do
