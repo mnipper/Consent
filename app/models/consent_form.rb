@@ -14,7 +14,7 @@
 #
 
 class ConsentForm < ActiveRecord::Base
-  extend EncryptedFields
+  extend Serket::EncryptedFields
   
   encrypted_fields :name, :email
 

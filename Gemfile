@@ -38,6 +38,7 @@ gem 'spring',        group: :development
 # Use debugger
 gem 'debugger', group: [:development, :test]
 gem 'annotate'
+gem 'serket', '~> 0.1.1'
 
 group :test do
   gem 'rspec-rails', '~> 2.0'
