@@ -14,9 +14,9 @@
 #
 
 class ConsentForm < ActiveRecord::Base
-  extend Serket::EncryptedFields
+  extend Serket::DecryptedFields
   
-  encrypted_fields :name, :email
+  decrypted_fields :name, :email
 
   validates :name, presence: true
 end
