@@ -39,6 +39,8 @@ gem 'spring',        group: :development
 gem 'debugger', group: [:development, :test]
 gem 'annotate'
 gem 'serket', '~> 0.2.0'
+gem 'activeadmin', github: 'activeadmin'
+gem 'devise'
 
 group :test do
   gem 'rspec-rails', '~> 2.0'
