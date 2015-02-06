@@ -24,4 +24,8 @@ group :test do
 end
 
 gem 'capistrano', '~> 3.3.0'
+gem 'capistrano-rvm'
+gem 'capistrano-bundler'
+gem 'capistrano-rails'
+gem 'capistrano-passenger'
 
