@@ -17,6 +17,7 @@ gem 'serket', '~> 0.2.0'
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
 gem 'exception_notification'
+gem "rails_config"
 
 group :test do
   gem 'rspec-rails', '~> 2.0'
