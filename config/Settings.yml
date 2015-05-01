@@ -1,0 +1,5 @@
+exception_notifications:
+  email_prefix: '[Consent] '
+  sender: 'noreply@chpir.org'
+  recipients: ['michael@chpir.org', 'leonard@chpir.org']
+
