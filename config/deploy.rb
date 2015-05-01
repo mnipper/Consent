@@ -12,7 +12,8 @@ set :pty, false
 set :format, :pretty
 set :keep_releases, 5
 set :linked_files, %w{config/database.yml config/secret_token.txt config/local_env.yml}
-set :linked_dirs, %w(bin log tmp/pids tmp/cache tmp/sockets vendor/bundle)
+set :linked_dirs, %w(log tmp/pids tmp/cache tmp/sockets vendor/bundle)
+set :bundle_binstubs, nil
 
 namespace :deploy do
 
