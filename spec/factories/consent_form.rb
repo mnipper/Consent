@@ -6,5 +6,6 @@ FactoryGirl.define do
     date Date.new
     project_id 1
     device_label 'test device'
+    consent_text
   end
 end

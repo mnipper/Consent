@@ -15,7 +15,7 @@ module Api
 
       private
         def consent_form_params
-          params.require(:consent_form).permit(:name, :email, :date, :send_email_copy, :project_id, :device_label)
+          params.require(:consent_form).permit(:name, :email, :date, :send_email_copy, :project_id, :device_label, :consent_text_id)
         end
     end
   end

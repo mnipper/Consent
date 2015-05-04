@@ -19,7 +19,7 @@ class ConsentForm < ActiveRecord::Base
   decrypted_fields :name, :email
 
   validates :name, presence: true
+  validates :consent_text_id, presence: true
 
-  belongs_to :project
-  has_one :consent_text, through: :project
+  belongs_to :consent_text
 end

@@ -22,7 +22,8 @@ describe "ConsentForm API" do
           'date' => @consent_form.date,
           'project_id' => @consent_form.project_id,
           'send_email_copy' => @consent_form.send_email_copy,
-          'device_label' => @consent_form.device_label
+          'device_label' => @consent_form.device_label,
+          'consent_text_id' => @consent_form.consent_text.id
         }
     expect(response).to be_success
   end
@@ -36,7 +37,8 @@ describe "ConsentForm API" do
           'date' => @consent_form.date,
           'project_id' => @consent_form.project_id,
           'send_email_copy' => @consent_form.send_email_copy,
-          'device_label' => @consent_form.device_label
+          'device_label' => @consent_form.device_label,
+          'consent_text_id' => @consent_form.consent_text.id
         }
     expect(response).to_not be_success
   end
