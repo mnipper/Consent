@@ -57,6 +57,20 @@ describe "ConsentForm API" do
     expect(response).to_not be_success
   end
 
+  it 'returns an unsuccessful response if consent form has no project_id' do
+    post @api_endpoint,
+      consent_form:
+        {
+          'name' => @encrypted_name,
+          'email' => @encrypted_email,
+          'date' => @consent_form.date,
+          'send_email_copy' => @consent_form.send_email_copy,
+          'device_label' => @consent_form.device_label,
+          'consent_text_id' => @consent_form.consent_text.id
+        }
+    expect(response).to_not be_success
+  end
+
   it 'should not respond to a get request' do
     lambda { get @api_endpoint }.should raise_error
   end

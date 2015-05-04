@@ -20,6 +20,7 @@ class ConsentForm < ActiveRecord::Base
 
   validates :name, presence: true
   validates :consent_text_id, presence: true
+  validates :project_id, presence: true
 
   belongs_to :consent_text
 end
