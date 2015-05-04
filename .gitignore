@@ -30,9 +30,6 @@ vcs.xml
 .idea/
 .project
 
-#Ignore bin
-bin/
-
 # Ignore modules for node
 node/node_modules
 
